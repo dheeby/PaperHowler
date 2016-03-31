@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="assets/js/paper-full.js"></script>
+	<script type="text/javascript" src="assets/js/howler.min.js"></script>
+	<script type="text/javascript" src="assets/js/scripts.js"></script>
+
+	<link rel="stylesheet" href="assets/font-awesome-4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/circles.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+	
+	<!-- <script type="text/paperscript" src="assets/js/soundcircles.js" canvas="myCanvas"></script> -->
+
+	<script type="text/paperscript" canvas="myCanvas">
+		var circles = [];
+
+		function onKeyDown(event) {
+			if (keyData[event.key]) {
+				var maxPoint = new Point(view.size.width, view.size.height);
+				var randomPoint = Point.random();
+				var point = maxPoint * randomPoint;
+				var newCircle = new Path.Circle(point, 500)
+				newCircle.fillColor = keyData[event.key].color;
+				keyData[event.key].sound.play();
+				circles.push(newCircle);
+			}
+		}
+
+		function onFrame(event) {
+			for (var i = 0; i < circles.length; i++) {
+				circles[i].fillColor.hue += 1;
+				circles[i].scale(.9);
+				if (circles[i].length < Math.floor(Math.random() * 191) + 10) {
+					circles.splice(i, 1);
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="record-menu-bar">
+		<div class="div-center">
+			<i id="play-button" class="fa fa-play-circle-o fa-inverse fa-3x" onclick="playRecording()"></i>
+		</div>
+		<div class="div-center">
+			<i id="record-button" class="fa fa-microphone fa-inverse fa-3x fa-center" onclick="toggleRecord()"></i>
+		</div>
+	</div>
+	<div id="canvas-area">
+		<canvas id="myCanvas" resize></canvas>
+	</div>
+</body>
+
+</html>

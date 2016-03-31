@@ -1,0 +1,30 @@
+html, body {
+	margin: 0px;
+}
+
+#record-menu-bar {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	height: 70px;
+	z-index: 2;
+}
+
+.div-center {
+	width: 60px;
+	height: 60px;
+	margin-right: 5px;
+	border-radius: 100%;
+	line-height: 83px;
+	text-align: center;
+	vertical-align: middle;
+	display: inline-block;
+}
+
+.fa-play-circle-o, .fa-microphone {
+	line-height: inherit;
+}
+
+#canvas-area {
+
+}
